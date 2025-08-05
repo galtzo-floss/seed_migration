@@ -1,5 +1,25 @@
 name: Discord Notify
 
+on:
+  check_run:
+    types: [completed]
+  discussion:
+    types: [ created ]
+  discussion_comment:
+    types: [ created ]
+  fork:
+  gollum:
+  issues:
+    types: [ opened ]
+  issue_comment:
+    types: [ created ]
+  pull_request:
+    types: [ opened, reopened, closed ]
+  release:
+    types: [ published ]
+  watch:
+    types: [ started ]
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -16,13 +36,3 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
           username: GitHub Actions
-
-on:
-  discussion:
-    types: [created]
-  discussion_comment:
-    types: [created]
-  issues:
-    types: [opened]
-  pull_request:
-    types: [opened]
